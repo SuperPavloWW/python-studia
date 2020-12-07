@@ -7,18 +7,18 @@ Created on Sat Nov 21 18:28:22 2020
 with open('text1.txt', 'r', encoding="utf8") as file:
     data = file.read()#.replace('\n', '')
     
-words = data.split()
+#words = data.split()
 removable = ["i", "się", "oraz", "nigdy", "dlaczego"]
 
-#for word in words:
-#   if word in removables:
-        
-resultwords  = [word for word in words if word.lower() not in removable]
+specials = ['.', ',', '?', '!']
 
-result = ' '.join(resultwords)
+for word in removable:
+    data = data.replace(' ' + word + ' ', ' ')
+    for spec in specials:
+            data = data.replace(' ' + word + spec, ' ')
+            data = data.replace(spec + word + ' ', '')
 
-print(result)
-
+print(data)
 # pisanie do nowego pliku
 #text_file = open("newfile1.txt", "w+")
 #n = text_file.write(result)
